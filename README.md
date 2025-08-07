@@ -61,7 +61,7 @@
 </p>
 
 ## 🎯 Current Projects
-- [TDZ-UI](https://github.com/yeasinulhoquetuhin/Tdz-UI) - Advanced Web Panel
+- [Tdz VPS Panel](https://github.com/yeasinulhoquetuhin) - Advanced Web Panel
 - Network Security Tools Development
 - Linux Automation Scripts
 
