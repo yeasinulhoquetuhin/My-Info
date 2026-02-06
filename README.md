@@ -43,10 +43,10 @@
 ## 🤝 Connect With Me
 
 <p align="center">
-  <a href="https://www.facebook.com/m.yeasinulhoquetuhin" target="_blank">
+  <a href="https://www.facebook.com/yeasinulhoquetuhin" target="_blank">
     <img src="https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white" alt="Facebook"/>
   </a>
-  <a href="https://t.me/+H38YPe-apxE2OTFl" target="_blank">
+  <a href="https://t.me/TuhinBroh" target="_blank">
     <img src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram"/>
   </a>
   <a href="mailto:hmyeasinulhoquetuhin@gmail.com" target="_blank">
@@ -55,13 +55,13 @@
   <a href="https://www.youtube.com/@TuhinDroidZone" target="_blank">
     <img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="YouTube"/>
   </a>
-  <a href="https://tuhin-droid.zone.id" target="_blank">
+  <a href="https://info.tuhinbro.website" target="_blank">
     <img src="https://img.shields.io/badge/Website-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Website"/>
   </a>
 </p>
 
 ## 🎯 Current Projects
-- [Tdz VPS Panel](https://github.com/yeasinulhoquetuhin) - Advanced Web Panel
+- [TDZ-UI](https://github.com/yeasinulhoquetuhin) - Advanced Web Panel
 - Network Security Tools Development
 - Linux Automation Scripts
 
