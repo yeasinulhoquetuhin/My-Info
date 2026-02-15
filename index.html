@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yeasinul Hoque Tuhin | Tech Specialist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a56d4;
+            --dark: #1E293B;
+            --darker: #0F172A;
+            --light: #F8FAFC;
+            --lighter: #FFFFFF;
+            --accent: #f72585;
+            --gray: #64748B;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+        
+        [data-theme="dark"] {
+            --primary: #4895ef;
+            --primary-dark: #4361ee;
+            --dark: #F8FAFC;
+            --darker: #E2E8F0;
+            --light: #1E293B;
+            --lighter: #0F172A;
+            --accent: #f72585;
+            --gray: #94A3B8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--dark);
+            background-color: var(--light);
+            transition: var(--transition);
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-size: 16px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            position: relative;
+        }
+        
+        /* Theme Toggle */
+        .theme-toggle-container {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            z-index: 100;
+        }
+        
+        .theme-toggle {
+            background: var(--lighter);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: none;
+            transition: var(--transition);
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(15deg);
+        }
+        
+        .theme-toggle i {
+            font-size: 1.4rem;
+            color: var(--dark);
+            transition: var(--transition);
+        }
+        
+        /* Header Section */
+        header {
+            text-align: center;
+            margin: 3rem 0 2rem;
+            position: relative;
+        }
+        
+        .profile-container {
+            position: relative;
+            width: fit-content;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary);
+            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.2);
+            display: block;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            line-height: 1.2;
+        }
+        
+        .location {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+            color: #1e90ff;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        
+        .country-flag {
+            font-size: 1.3rem;
+            vertical-align: middle;
+        }
+        
+        /* Social Links */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--lighter);
+            color: var(--dark);
+            font-size: 1.3rem;
+            transition: var(--transition);
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .social-link.facebook:hover { background: #1877f2; color: white; }
+        .social-link.telegram:hover { background: #26a5e4; color: white; }
+        .social-link.youtube:hover { background: #ff0000; color: white; }
+        .social-link.tiktok:hover { background: #000000; color: white; }
+        .social-link.github:hover { background: #333333; color: white; }
+        
+        .social-link::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--darker);
+            color: var(--lighter);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            opacity: 0;
+            transition: var(--transition);
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        
+        .social-link:hover::after {
+            opacity: 1;
+            bottom: -45px;
+        }
+        
+        /* Social Platform Links */
+        .platform-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .platform-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.4rem 0.9rem;
+            border-radius: 6px;
+            background: rgba(67, 97, 238, 0.1);
+            font-size: 0.9rem;
+        }
+        
+        .platform-link:hover {
+            background: rgba(67, 97, 238, 0.2);
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .platform-link i {
+            font-size: 1rem;
+        }
+        
+        .platform-link.facebook:hover { background: #1877f2; color: white; }
+        .platform-link.telegram:hover { background: #26a5e4; color: white; }
+        .platform-link.youtube:hover { background: #ff0000; color: white; }
+        .platform-link.tiktok:hover { background: #000000; color: white; }
+        .platform-link.github:hover { background: #333333; color: white; }
+        
+        /* Sections */
+        section {
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+        
+        h2 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            position: relative;
+            display: inline-block;
+            color: var(--dark);
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        
+        /* Cards */
+        .card {
+            background: var(--lighter);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        [data-theme="dark"] .card {
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: var(--dark);
+            font-weight: 600;
+        }
+        
+        .card p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        /* About Me Specific Styling */
+        .info-list, .hobbies-list {
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+        
+        .info-list li, .hobbies-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            color: var(--gray);
+        }
+        
+        .info-list li i, .hobbies-list li i {
+            color: var(--primary);
+            font-size: 1rem;
+        }
+        
+        /* Projects */
+        .project {
+            margin-bottom: 1.8rem;
+        }
+        
+        .project h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.7rem;
+            color: var(--dark);
+            font-weight: 600;
+        }
+        
+        .project p {
+            color: var(--gray);
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.4rem 0.9rem;
+            border-radius: 6px;
+            background: rgba(67, 97, 238, 0.1);
+            font-size: 0.9rem;
+        }
+        
+        .project-link:hover {
+            background: rgba(67, 97, 238, 0.2);
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .project-link i {
+            font-size: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2.5rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            color: var(--gray);
+            position: relative;
+            font-size: 0.9rem;
+        }
+        
+        [data-theme="dark"] footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        footer p {
+            margin-bottom: 0.7rem;
+        }
+        
+        .heart {
+            color: var(--accent);
+            display: inline-block;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .profile-img {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .social-link {
+                width: 42px;
+                height: 42px;
+                font-size: 1.2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .card {
+                padding: 1.3rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.5rem 1rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .profile-img {
+                width: 160px;
+                height: 160px;
+            }
+            
+            .social-links {
+                gap: 0.8rem;
+            }
+            
+            .social-link {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+            
+            .platform-links {
+                gap: 0.8rem;
+            }
+            
+            .project-links {
+                gap: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Theme Toggle -->
+        <div class="theme-toggle-container">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+        
+        <!-- Header Section -->
+        <header>
+            <div class="profile-container">
+                <img src="https://github.com/yeasinulhoquetuhin.png" alt="Yeasinul Hoque Tuhin" class="profile-img">
+            </div>
+            
+            <h1>Yeasinul Hoque Tuhin</h1>
+            
+            <div class="location">
+                <span>Self-Taught Tech Developer</span>
+            </div>
+            
+            <div class="social-links">
+                <a href="https://www.facebook.com/m.yeasinulhoquetuhin" class="social-link facebook" data-tooltip="Facebook" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://t.me/+H38YPe-apxE2OTFl" class="social-link telegram" data-tooltip="Telegram" target="_blank">
+                    <i class="fab fa-telegram-plane"></i>
+                </a>
+                <a href="https://www.youtube.com/@TuhinDroidZone" class="social-link youtube" data-tooltip="YouTube" target="_blank">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://www.tiktok.com/@yeasinul_hoque_tuhin" class="social-link tiktok" data-tooltip="TikTok" target="_blank">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+                <a href="https://github.com/yeasinulhoquetuhin" class="social-link github" data-tooltip="GitHub" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="/cdn-cgi/l/email-protection#295144504c485a40475c454146585c4c5d5c414047694e444e4645014c4042" class="social-link email" data-tooltip="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </header>
+
+        <!-- About Me Section -->
+        <section class="about-me" style="animation: fadeIn 0.8s ease-out;">
+            <h2>👤 About Me</h2>
+            <div class="card">
+                <div class="project">
+                    <h3>Personal Information</h3>
+                    <ul class="info-list">
+                        <li><i class="fas fa-user"></i> Name: Yeasinul Hoque Tuhin</li>
+                        <li><i class="fas fa-graduation-cap"></i> Profession: Student</li>
+                        <li><i class="fas fa-pray"></i> Religion: Islam</li>
+                        <li><i class="fas fa-heart"></i> Relationship: Single</li>
+                        <li><i class="fas fa-clock"></i> Online Time: 09:00 PM (BD)</li>
+                        <li><i class="fas fa-map-marker-alt"></i> City: Cox's Bazar, Bangladesh</li>
+                    </ul>
+                </div>
+                <div class="project">
+                    <h3>Hobbies & Interests</h3>
+                    <ul class="hobbies-list">
+                        <li><i class="fas fa-wifi"></i> Tech & Mobile Mender</li>
+                        <li><i class="fas fa-code"></i> Programming</li>
+                        <li><i class="fas fa-gamepad"></i> Gaming</li>
+                        <li><i class="fas fa-camera"></i> Photography</li>
+                        <li><i class="fas fa-book"></i> Book Reading</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Channel & Community Section -->
+        <section class="channel-community" style="animation: fadeIn 0.8s ease-out;">
+            <h2>📢 Channel & Community</h2>
+            <div class="card">
+                <div class="project">
+                    <h3>YouTube Channel</h3>
+                    <p>Tuhin Droid Zone - My tech-focused YouTube channel where I share tutorials, reviews, and tech news in Bengali.</p>
+                    <div class="project-links">
+                        <a href="https://www.youtube.com/@TuhinDroidZone" class="project-link youtube" target="_blank">
+                            <i class="fab fa-youtube"></i> Visit Channel
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="project">
+                    <h3>Telegram Community</h3>
+                    <p>Join my active Telegram community for tech discussions, help, and updates.</p>
+                    <div class="project-links">
+                        <a href="https://t.me/+sPqgUAVp-X5iOWU9" class="project-link telegram" target="_blank">
+                            <i class="fab fa-telegram-plane"></i> Telegram Channel
+                        </a>
+                        <a href="https://t.me/+WH16QuARgWQ1MjA1" class="project-link" target="_blank">
+                            <i class="fas fa-users"></i> Telegram Group
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Platforms Section -->
+        <section class="social-platforms" style="animation: fadeIn 0.8s ease-out 0.2s;">
+            <h2>🌐 Social Platforms</h2>
+            <div class="card">
+                <p>Connect with me on my active social platforms:</p>
+                <div class="platform-links" style="margin-top: 1.2rem;">
+                    <a href="https://www.facebook.com/m.yeasinulhoquetuhin" class="platform-link facebook" target="_blank">
+                        <i class="fab fa-facebook-f"></i> View Profile
+                    </a>
+                    <a href="https://t.me/+H38YPe-apxE2OTFl" class="platform-link telegram" target="_blank">
+                        <i class="fab fa-telegram-plane"></i> View Channel
+                    </a>
+                    <a href="https://www.youtube.com/@TuhinDroidZone" class="platform-link youtube" target="_blank">
+                        <i class="fab fa-youtube"></i> View Channel
+                    </a>
+                    <a href="https://www.tiktok.com/@yeasinul_hoque_tuhin" class="platform-link tiktok" target="_blank">
+                        <i class="fab fa-tiktok"></i> View Profile
+                    </a>
+                    <a href="https://github.com/yeasinulhoquetuhin" class="platform-link github" target="_blank">
+                        <i class="fab fa-github"></i> Visit Profile
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Current Activities Section -->
+        <section class="activities" style="animation: fadeIn 0.8s ease-out 0.4s;">
+            <h2>🚀 Current Activities</h2>
+            <div class="card">
+                <div class="project">
+                    <h3>Telegram Channel</h3>
+                    <p>Currently most active on Telegram - daily tech updates, discussions, and community support.</p>
+                    <div class="project-links">
+                        <a href="https://t.me/TuhinBroh" class="project-link telegram" target="_blank">
+                            <i class="fab fa-telegram-plane"></i> Telegram Profile
+                        </a>
+                        <a href="https://t.me/+H38YPe-apxE2OTFl" class="project-link" target="_blank">
+                            <i class="fas fa-users"></i> Telegram Channel
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="project">
+                    <h3>TDZ UI Project</h3>
+                    <p>Working on TDZ UI - A personal project to create beautiful and functional user interfaces.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/yeasinulhoquetuhin" class="project-link github" target="_blank">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="project">
+                    <h3>Content Creation</h3>
+                    <p>Regularly creating tech content for YouTube and other social platforms.</p>
+                    <div class="project-links">
+                        <a href="https://www.youtube.com/@TuhinDroidZone" class="project-link youtube" target="_blank">
+                            <i class="fab fa-youtube"></i> Latest Videos
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" style="animation: fadeIn 0.8s ease-out 0.6s;">
+            <h2>📫 Contact Me</h2>
+            <div class="card">
+                <p>For collaborations, questions, or just to say hello:</p>
+                
+                <div class="project-links" style="margin-top: 1.2rem;">
+                    <a href="/cdn-cgi/l/email-protection#2f4742564a4e5c46415a4347405e5a4a5b5a4746416f48424e4643014c4042" class="project-link">
+                        <i class="fas fa-envelope"></i> Email Me
+                    </a>
+                    <a href="https://t.me/Yeasinul_Hoque_Tuhin" class="project-link telegram" target="_blank">
+                        <i class="fab fa-telegram-plane"></i> Telegram
+                    </a>
+                    <a href="tel:+8801619743720" class="project-link" target="_blank">
+                        <i class="fas fa-phone"></i> Call Me
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer style="animation: fadeIn 0.8s ease-out 0.8s;">
+        <p>© <span id="currentYear"></span> <strong>Yeasinul Hoque Tuhin</strong>. All rights reserved.</p>
+        <p>Made with <span class="heart">❤️</span> for the tech community</p>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        // Check for saved theme preference or use preferred color scheme
+        const savedTheme = localStorage.getItem('theme') || 
+                          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        
+        // Apply the saved theme
+        document.body.setAttribute('data-theme', savedTheme);
+        themeIcon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.body.setAttribute('data-theme', newTheme);
+            themeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            localStorage.setItem('theme', newTheme);
+        });
+        
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Add animation to elements when they come into view
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('section, .card, .project');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Set initial state for animations
+        document.querySelectorAll('section, .card, .project').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        });
+        
+        // Run animation check on scroll and load
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"dc9b421b7a2945ccb1ea24b8485ea6d5","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
